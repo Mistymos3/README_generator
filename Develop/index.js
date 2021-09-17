@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
-const { rejects } = require("assert");
 
 // array of questions for user
 ///array of Qs for inquirer
@@ -20,59 +19,62 @@ const questions = [
     },
 
     {
-        type:"input",
+        type: "input",
         name: "title",
         message: "What is your project title?"
     
     },
     
     {
-        type:"input",
-        name:"description",
-        message:"What is your project description?"
+        type: "input",
+        name: "tableOfContents",
+        message: "Would you like to include a Table of Contents?"
+    },
+
+    {
+        type: "input",
+        name: "description",
+        message: "What is your project description?"
     },
         
     {
-        type:"input",
-        name:"installation",
-        message:"What are the installation instructions?"
+        type: "input",
+        name: "installation",
+        message: "What are the installation instructions?"
     },
    
     {
-        type:"input",
-        name:"tests",
-        message:"Which tests were used?"
+        type: "input",
+        name: "tests",
+        message: "Which tests were used?"
     },
     
     {
-        type:"input",
-        name:"contribution",
-        message:"How can users contribute?"
+        type: "input",
+        name: "contribution",
+        message: "How can users contribute?"
     },
     
     {
-        type:"list",
-        name:"license",
-        message:"Which licenses do you want to use?",
+        type: "list",
+        name: "license",
+        message: "Which licenses do you want to use?",
         choices: [
             "MIT", "Apache 2.0", "GPL 3.0", "BSD 3", "none"
         ]
         },   
-
-
 ];
 
 // function to write README file
-function writeToFile(fileName, data, path) {
-    
-    //tdb fs.writeFileSync( ..., fileName, data)
-    fs.writeFileSync(path(fileName), data, path => {
-        if (path) {
-            rejects(path);
-            return;
-        }
-    });
+function writeToFile(fileName, data) {
+    fs.writeFile('README.md', )
+
 }
+
+
+
+
+
 
 
 // function to initialize program
@@ -83,10 +85,10 @@ function init() {
                             ///then take the answers and pipe them into a callback
     .then((inquirerResponses) => {
         ///what i want to do with them
-        console.log("Generate Readme");
+        console.log('Generate Readme');
         ///then invoke(call) writeToFile which will take the data and fileName
         ///calling it with the word README b/c thats the name of the file that'll be generated
-        writeToFile("README.md", generateMarkdown({...inquirerResponses}));
+        writeToFile('README.md', generateMarkdown({...inquirerResponses}));
     })
 }
 

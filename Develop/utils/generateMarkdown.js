@@ -2,13 +2,12 @@
 
 
 ///only if license is not equal to none will this function be called
-function renderLicenseBadge(license){
+function generateLicenseBadge(license){
   ///if license not equal to none means they selected a license
+  //if license has content
   if (license !== "none") {
-    return (
-      `## Project Description
-      ${description}
-      `
+    return (`## Project Description
+             ${description}`)
       ///return
       //inbetween ticks
       //headline
@@ -16,79 +15,71 @@ function renderLicenseBadge(license){
       // `## License
       
       // This project is licensed under the ${license} license.`
-  )}
-  return `## Description
-          No description provided`
-}
-
-
-// function renderTableOfContents(tableOfContents){
-//   if(tableOfContents!=="none"){
-//     return(
-//       `## Table of Contents
-//       [Project Description](#Project-Description)
-//       [Installation Instructions](#Installation-Instructions)
-//       [Tests](#Tests)
-//       [Contribution](#Contribution) 
-//       [License](#License)
-//       [Github](#Github)
-//       [Email](#Email)
-//       `
-//     )
-//   }
-//   return ` `
-// };
-
-function renderInstallation(installation){
-  if(installation!=="none"){
-    return(
-      `## Installation Instructions
-      ${installation}
-      `
-    )
+  } else {
+  return (`## Description
+          No description provided`)
   }
+};
+
+
+function generateTableOfContents(tableOfContents){
+  if(tableOfContents !=="none"){
+    return(`## Table of Contents
+          [Project Description](#Project-Description)
+          [Installation Instructions](#Installation-Instructions)
+          [Tests](#Tests)
+          [Contribution](#Contribution) 
+          [License](#License)
+          [Github](#Github)
+          [Email](#Email)`)
+  } else {
+  return (``)
+  }
+};
+
+function generateInstallation(installation){
+  if(installation !=="none"){
+    return(`## Installation Instructions
+            ${installation}`)
+  } else {
   return 'No instructions set'
-};
-
-function renderTests(tests){
-  if(tests!=="none"){
-    return(
-      `## Tests
-      ${tests}`
-    )
   }
-  return ' '
 };
 
-function renderContribution(contribution){
-  if(contribution!=="none"){
-    return(
-      `## Contribution 
-      ${contribution}
-      `
-    )
+function generateTests(tests){
+  if(tests !=="none"){
+    return(`## Tests
+          ${tests}`)
+  } else {
+  return ('')
   }
-  return "There are no opportunities for contribution."
 };
 
-function renderUsername(github){
-  if (github!=="none"){
-    return(
-      `## Github
-      Username: ${github}`
-    )
+function generateContribution(contribution){
+  if(contribution !=="none"){
+    return(`## Contribution 
+          ${contribution}`)
+  } else {
+  return (`There are no opportunities for contribution.`)
   }
-  return '## Github'
 };
 
-function renderEmail(email){
+function generateUsername(github){
+  if (github !=="none"){
+    return(`## Github
+            Username: ${github}`)
+  } else {
+  return ('## Github');
+  }
+};
+
+function generateEmail(email){
   if (email!=="none"){
-    return(
-      `## Email
-      ${email}`
-    )
+    return (`## Email
+            ${email}`);
+  } else {
+    return (`No email provided`)
   }
-  return `No email provided`
 };
 
 
@@ -96,16 +87,15 @@ function renderEmail(email){
 
 
 function generateMarkdown(data) {
-  return `# ${data.title}
-  ${renderDescription(data.description)}
-  ${renderTableOfContents(data.tableOfContents)}
-  ${renderInstallation(data.installation)}
-  ${renderTests(data.tests)}
-  ${renderContribution(data.contribution)}
-  ${renderLicenseBadge(data.license)}
-  ${renderUsername(data.github)}
-  ${renderEmail(data.email)}
-`;
+  return (`# ${data.title}
+  ${generateDescription(data.description)}
+  ${generateTableOfContents(data.tableOfContents)}
+  ${generateInstallation(data.installation)}
+  ${generateTests(data.tests)}
+  ${generateContribution(data.contribution)}
+  ${generateLicenseBadge(data.license)}
+  ${generateUsername(data.github)}
+  ${generateEmail(data.email)}`);
 }
 
 module.exports = generateMarkdown;
