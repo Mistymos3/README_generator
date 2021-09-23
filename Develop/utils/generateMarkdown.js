@@ -1,84 +1,88 @@
 // function to generate markdown for README
 
+// const inquirer = require("inquirer")
+
 
 ///only if license is not equal to none will this function be called
-function generateLicenseBadge(license){
+function generateLicense(license){
   ///if license not equal to none means they selected a license
   //if license has content
   if (license !== "none") {
-    return (`## Project Description
-             ${description}`)
+    return (`## License \n
+            This project is licensed under the ${license} license.`)
       ///return
       //inbetween ticks
       //headline
       //then a sentence. tick is instead of concatinating with +
       // `## License
-      
       // This project is licensed under the ${license} license.`
   } else {
-  return (`## Description
-          No description provided`)
+    return "";
+  }
+};
+
+function generateDescription(description) {
+  if(description !=="none") {
+    return (`## Project Description \n
+            ${description}`)
+  } else {
+    return `## Description No description provided`;
   }
 };
 
 
 function generateTableOfContents(tableOfContents){
   if(tableOfContents !=="none"){
-    return(`## Table of Contents
+    return `## Table of Contents
           [Project Description](#Project-Description)
           [Installation Instructions](#Installation-Instructions)
           [Tests](#Tests)
           [Contribution](#Contribution) 
           [License](#License)
           [Github](#Github)
-          [Email](#Email)`)
+          [Email](#Email)`
   } else {
-  return (``)
+  return "";
   }
 };
 
 function generateInstallation(installation){
   if(installation !=="none"){
-    return(`## Installation Instructions
-            ${installation}`)
+    return `## Installation Instructions ${installation}`
   } else {
-  return 'No instructions set'
+  return 'There are no installation instructions yet';
   }
 };
 
 function generateTests(tests){
   if(tests !=="none"){
-    return(`## Tests
-          ${tests}`)
+    return `## Tests ${tests}`
   } else {
-  return ('')
+  return ''
   }
 };
 
 function generateContribution(contribution){
   if(contribution !=="none"){
-    return(`## Contribution 
-          ${contribution}`)
+    return `## Contribution ${contribution}`
   } else {
-  return (`There are no opportunities for contribution.`)
+  return 'There are no opportunities for contribution.';
   }
 };
 
 function generateUsername(github){
   if (github !=="none"){
-    return(`## Github
-            Username: ${github}`)
+    return `## Github Username: ${github}`
   } else {
-  return ('## Github');
+  return '## Github';
   }
 };
 
 function generateEmail(email){
   if (email!=="none"){
-    return (`## Email
-            ${email}`);
+    return `## Email ${email}`
   } else {
-    return (`No email provided`)
+    return 'No email provided';
   }
 };
 
@@ -87,15 +91,15 @@ function generateEmail(email){
 
 
 function generateMarkdown(data) {
-  return (`# ${data.title}
+  return `# ${data.title}
   ${generateDescription(data.description)}
   ${generateTableOfContents(data.tableOfContents)}
   ${generateInstallation(data.installation)}
   ${generateTests(data.tests)}
   ${generateContribution(data.contribution)}
-  ${generateLicenseBadge(data.license)}
+  ${generateLicense(data.license)}
   ${generateUsername(data.github)}
-  ${generateEmail(data.email)}`);
+  ${generateEmail(data.email)}`;
 }
 
 module.exports = generateMarkdown;

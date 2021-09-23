@@ -59,17 +59,14 @@ const questions = [
         type: "list",
         name: "license",
         message: "Which licenses do you want to use?",
-        choices: [
-            "MIT", "Apache 2.0", "GPL 3.0", "BSD 3", "none"
-        ]
+        choices: ["MIT", "Apache 2.0", "GPL 3.0", "BSD 3", "none"]
         },   
 ];
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile('README.md', )
-
-}
+    return fs.writeFileSync(path.join(process.cwd(), fileName),data);
+};
 
 
 
@@ -86,11 +83,14 @@ function init() {
     .then((inquirerResponses) => {
         ///what i want to do with them
         console.log('Generate Readme');
-        ///then invoke(call) writeToFile which will take the data and fileName
+        ///then invoke(call) writeFile which will take the data and fileName
         ///calling it with the word README b/c thats the name of the file that'll be generated
         writeToFile('README.md', generateMarkdown({...inquirerResponses}));
+        // console.log(inquirerResponses)
     })
 }
+
+
 
 // function call to initialize program
 init();
